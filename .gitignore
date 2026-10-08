@@ -1,0 +1,29 @@
+# --- Секреты и рабочие данные сейфа ---
+hdl_help.db
+hdl_help.db-journal
+hdl_settings.ini
+hdl_settings.hash
+server_share.bin
+server_token.txt
+secrets.txt
+
+# --- Python ---
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.venv/
+venv/
+env/
+
+# --- Редакторы / ОС ---
+.vscode/
+.idea/
+Thumbs.db
+desktop.ini
+*.swp
+*~
+
+# --- Демо-артефакты от самостоятельных кубов ---
+_demo.db
