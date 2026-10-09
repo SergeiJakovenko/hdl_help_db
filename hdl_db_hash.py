@@ -13,7 +13,14 @@ import os
 import sys
 from pathlib import Path
 
-HASH_FILE = Path(__file__).parent / "hdl_settings.hash"
+if getattr(sys, "frozen", False):
+    BASE_DIR = Path(sys.executable).parent
+else:
+    BASE_DIR = Path(__file__).parent
+
+
+
+HASH_FILE = BASE_DIR /"hdl_settings.hash"
 ITERATIONS = 600_000
 SALT_LEN = 16
 KEY_LEN = 32

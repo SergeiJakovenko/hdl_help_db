@@ -27,3 +27,10 @@ desktop.ini
 
 # --- Демо-артефакты от самостоятельных кубов ---
 _demo.db
+
+# --- Pyinstaller ---
+build/
+dist/
+*.spec
+hdl_help.exe
+*.exe

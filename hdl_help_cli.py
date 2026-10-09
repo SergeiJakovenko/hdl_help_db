@@ -14,14 +14,21 @@ from hdl_db_codec import new_key, encrypt, decrypt, split3, combine3
 from hdl_db_access import ServerFactor, DPAPIFactor, HelloFactor
 from hdl_db_fallback import verify as verify_fallback
 
-VAULT_DIR  = Path(r"C:\Users\serjak\Documents\HDL_Help")
+
+
+if getattr(sys, "frozen", False):
+    BASE_DIR = Path(sys.executable).parent
+else:
+    BASE_DIR = Path(__file__).parent
+
+VAULT_DIR  = Path(r"C:\Users\serjak\Documents\HDL_Help")  # TODO: убрать, когда будет нормальная настройка
 DB_PATH    = VAULT_DIR / "hdl_help.db"
 CFG_PATH   = VAULT_DIR / "hdl_settings.ini"
 
-SCRIPT_DIR = Path(__file__).parent
+# SCRIPT_DIR = Path(__file__).parent
 SERVER_URL = "http://127.0.0.1:8787/share"
-SERVER_TOK = SCRIPT_DIR / "server_token.txt"
-SERVER_S1  = SCRIPT_DIR / "server_share.bin"
+SERVER_TOK = BASE_DIR / "server_token.txt"
+SERVER_S1  = BASE_DIR / "server_share.bin"
 
 
 def do_init(secrets_file: Path) -> None:
@@ -114,6 +121,10 @@ def main() -> None:
         return
     if cmd == "show" and len(sys.argv) == 3:
         show_article(sys.argv[2])
+        return
+    if cmd == "serve":
+        from hdl_help_serve import main as serve_main
+        serve_main()
         return
 
     data = asyncio.run(do_unlock())

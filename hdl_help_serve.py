@@ -4,9 +4,15 @@ hdl_help_serve — мини-сервер для отдачи справки по
 """
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from pathlib import Path
+import sys
 
-SHARE_FILE = Path(__file__).parent / "server_share.bin"
-TOKEN_FILE = Path(__file__).parent / "server_token.txt"
+if getattr(sys, "frozen", False):
+    BASE_DIR = Path(sys.executable).parent
+else:
+    BASE_DIR = Path(__file__).parent
+
+SHARE_FILE = BASE_DIR / "server_share.bin"
+TOKEN_FILE = BASE_DIR / "server_token.txt"
 PORT = 8787
 
 def _share():
